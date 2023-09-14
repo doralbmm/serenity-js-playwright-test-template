@@ -29,7 +29,11 @@ pipeline {
       {
         always
         {
+          // Send results to qTest
           submitJUnitTestResultsToqTest([apiKey: '03357e81-e966-4a5e-8cce-ee12d11576b8', containerID: 21724, containerType: 'release', createTestCaseForEachJUnitTestClass: false, createTestCaseForEachJUnitTestMethod: true, overwriteExistingTestSteps: true, parseTestResultsFromTestingTools: true, parseTestResultsPattern: '**.xml', projectID: 7263, qtestURL: 'https://testfly.qtestnet.com/', submitToAReleaseAsSettingFromQtest: true, submitToExistingContainer: false, utilizeTestResultsFromCITool: false])
+          // Archive the screenshots
+          archiveArtifacts(artifacts: 'OneToDo-*.png', followSymlinks: false)
+          sh 'rm -rf *.png'
         }
       }
     }

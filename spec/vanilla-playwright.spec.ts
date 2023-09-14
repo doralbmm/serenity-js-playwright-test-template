@@ -13,7 +13,7 @@ test.describe('Vanilla Playwright Test', () => {
     });
 
     test.describe('New Todo', () => {
-        test('should allow me to add todo items', async ({ page }) => {
+        test('should allow me to add todo items', async ({ page, browserName }) => {
             // Create 1st todo.
             await page.locator('.new-todo').fill(TODO_ITEMS[0]);
             await page.locator('.new-todo').press('Enter');
@@ -22,6 +22,8 @@ test.describe('Vanilla Playwright Test', () => {
             await expect(page.locator('.view label')).toHaveText([
                 TODO_ITEMS[0]
             ]);
+
+            await page.screenshot({ path: 'OneToDo-' + browserName + '.png', fullPage: true })
 
             // Create 2nd todo.
             await page.locator('.new-todo').fill(TODO_ITEMS[1]);
