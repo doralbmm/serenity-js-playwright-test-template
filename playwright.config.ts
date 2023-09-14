@@ -33,6 +33,7 @@ const config: PlaywrightTestConfig = {
     reporter: [
         ['line'],
         ['html', { open: 'never' }],
+        ['junit', { outputFile: 'results.xml' }],
         ['@serenity-js/playwright-test', {
             crew: [
                 '@serenity-js/console-reporter',
